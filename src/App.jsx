@@ -7,7 +7,6 @@ import { Toaster } from "react-hot-toast";
 import axios from "axios";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
-
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [tasks, setTasks] = useState([]);
@@ -17,21 +16,20 @@ const App = () => {
   useEffect(() => {
     const handleGetUser = async () => {
       try {
+        setIsAuthenticated(true);
         const { data } = await axios.get(
           "https://task-management-web-app-backend.onrender.com/api/v1/user/me",
           { withCredentials: true }
         );
-        setIsAuthenticated(true);
         setUser(data.user);
       } catch (error) {
-        console.log(error);
         console.log("USER IS NOT AUTHENTICATED!");
         setIsAuthenticated(false);
         setUser({});
       }
     };
     handleGetUser();
-  }, []); // Empty dependency array ensures this runs once when the component mounts
+  }, []);
 
   return (
     <>
