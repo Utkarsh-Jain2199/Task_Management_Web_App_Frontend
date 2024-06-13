@@ -8,7 +8,7 @@ import axios from "axios";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [tasks, setTasks] = useState([]);
   const [user, setUser] = useState({});
   const [taskTitle, setTaskTitle] = useState("Tasks");
@@ -16,11 +16,11 @@ const App = () => {
   useEffect(() => {
     const handleGetUser = async () => {
       try {
-        setIsAuthenticated(true);
         const { data } = await axios.get(
           "https://task-management-web-app-backend.onrender.com/api/v1/user/me",
           { withCredentials: true }
         );
+        setIsAuthenticated(true);
         setUser(data.user);
       } catch (error) {
         console.log("USER IS NOT AUTHENTICATED!");
@@ -29,7 +29,7 @@ const App = () => {
       }
     };
     handleGetUser();
-  }, []);
+  }, [isAuthenticated]);
 
   return (
     <>
