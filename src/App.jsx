@@ -8,7 +8,7 @@ import axios from "axios";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [tasks, setTasks] = useState([]);
   const [user, setUser] = useState({});
   const [taskTitle, setTaskTitle] = useState("Tasks");
