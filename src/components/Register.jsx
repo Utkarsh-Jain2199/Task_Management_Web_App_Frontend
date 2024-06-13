@@ -129,7 +129,7 @@ function Register({ isAuthenticated, setIsAuthenticated }) {
     formData.append("password", password);
 
     try {
-      const res = await axios.post("http://localhost:4000/api/v1/user/register", formData, {
+      const res = await axios.post("https://task-management-web-app-backend.onrender.com/api/v1/user/register", formData, {
         withCredentials: true,
         headers: { "Content-Type": "application/json" },
       });
